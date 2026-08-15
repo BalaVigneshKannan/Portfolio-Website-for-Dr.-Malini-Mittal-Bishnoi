@@ -94,6 +94,7 @@ p {
 }
 
 .section-heading h2 {
+  font-family: var(--serif-plain);
   font-size: clamp(30px, 4vw, 46px);
   letter-spacing: -0.01em;
 }
@@ -512,9 +513,9 @@ section {
 .lens__statement {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(24px, 3vw, 38px);
+  font-size: clamp(22px, 2.4vw, 32px);
   line-height: 1.45;
-  max-width: 20ch;
+  max-width: 62ch;
   color: rgba(241, 233, 221, 0.92);
   margin: 28px 0 64px;
 }
@@ -600,6 +601,18 @@ section {
   font-family: var(--serif);
   font-size: 18px;
   color: rgba(241, 233, 221, 0.92);
+}
+
+.lens .who__more-btn {
+  margin-top: 44px;
+  border-color: var(--dusk-ink);
+  color: var(--dusk-ink);
+}
+
+.lens .who__more-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--dusk-ink);
 }
 
 @media (max-width: 900px) {
@@ -803,7 +816,108 @@ section {
   }
 }
 
-/* ---------- Stories (05) ---------- */
+/* ---------- About the Book (05) ---------- */
+.book {
+  padding: clamp(90px, 12vw, 160px) 0;
+}
+
+.book__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+}
+
+.book__cover {
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 20px 44px 20px 10px;
+  animation: book-float 4.5s ease-in-out infinite;
+}
+
+.book__cover:hover {
+  animation-play-state: paused;
+}
+
+@keyframes book-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book__cover {
+    animation: none;
+  }
+}
+
+.book__spine {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  right: 4px;
+  width: 40px;
+  background: linear-gradient(195deg, #1c3634 0%, #12211f 100%);
+  border-radius: 2px;
+  box-shadow: 0 25px 45px -18px rgba(0, 0, 0, 0.55);
+}
+
+.book__spine span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #efe4c9;
+}
+
+.book__cover img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 30px 55px -20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.book__cover:hover img {
+  transform: scale(1.02);
+}
+
+.book__lede {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.8vw, 21px);
+  line-height: 1.6;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+.book__text {
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+@media (max-width: 780px) {
+  .book__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book__cover {
+    max-width: 320px;
+  }
+}
+
+/* ---------- Stories (06) ---------- */
 .stories {
   padding: clamp(90px, 12vw, 160px) 0;
 }
@@ -813,6 +927,16 @@ section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 28px;
+}
+
+.blogs__grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .blogs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .story-card {
@@ -1296,9 +1420,14 @@ p.journey__lead.dropcap::first-letter {
 .credentials-page {
   position: relative;
   isolation: isolate;
+  overflow-x: hidden;
   background:
     repeating-linear-gradient(135deg, rgba(27, 23, 18, 0.025) 0px, rgba(27, 23, 18, 0.025) 1px, transparent 1px, transparent 14px),
     var(--bg);
+}
+
+.credentials-page .article__content {
+  padding-top: clamp(30px, 4vw, 50px);
 }
 
 .credentials-page::before,
