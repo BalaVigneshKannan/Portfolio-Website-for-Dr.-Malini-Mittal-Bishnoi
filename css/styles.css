@@ -11,6 +11,9 @@
   --dusk: #14100b;
   --dusk-ink: #f1e9db;
   --dusk-line: rgba(241, 233, 221, 0.16);
+  --dusk-card: #221a10;
+  --dusk-card-alt: #2a2013;
+  --footer-bg: #2f2115;
 
   --serif: 'Fraunces', 'Iowan Old Style', 'Georgia', serif;
   --serif-plain: 'Source Serif 4', 'Iowan Old Style', 'Georgia', serif;
@@ -687,8 +690,91 @@ section {
 
 /* ---------- Publications (04) ---------- */
 .pubs {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: clamp(90px, 12vw, 160px) 0;
-  background: var(--bg-alt);
+  background: var(--dusk);
+  color: var(--dusk-ink);
+}
+
+.pubs .section-heading h2 {
+  color: var(--dusk-ink);
+}
+
+.pubs .section-heading .index {
+  color: rgba(241, 233, 221, 0.4);
+}
+
+.pubs .who__more-btn {
+  border-color: var(--dusk-ink);
+  color: var(--dusk-ink);
+}
+
+.pubs .who__more-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--dusk-ink);
+}
+
+.pubs::before,
+.pubs::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.pubs::before {
+  width: 420px;
+  height: 420px;
+  top: -160px;
+  right: -100px;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  opacity: 0.35;
+  animation: blob-float 20s ease-in-out infinite;
+}
+
+.pubs::after {
+  width: 320px;
+  height: 320px;
+  bottom: -140px;
+  left: -80px;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+  opacity: 0.18;
+  animation: blob-float 24s ease-in-out infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pubs::before,
+  .pubs::after {
+    animation: none;
+  }
+}
+
+.pubs__top.pubs__top--intro {
+  max-width: 640px;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  animation: book-float 4.5s ease-in-out infinite;
+}
+
+.pubs__top--intro .section-heading {
+  justify-content: center;
+}
+
+.pubs__top--intro .pubs__subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pubs__top--intro {
+    animation: none;
+  }
 }
 
 .pubs__top {
@@ -702,7 +788,7 @@ section {
 .pubs__subtitle {
   margin-top: 14px;
   font-size: 16px;
-  color: var(--ink-soft);
+  color: rgba(241, 233, 221, 0.75);
   max-width: 44ch;
 }
 
@@ -1666,8 +1752,21 @@ p.journey__lead.dropcap::first-letter {
   position: relative;
   isolation: isolate;
   padding: clamp(90px, 12vw, 160px) 0;
-  background: var(--bg-alt);
+  background: var(--dusk);
+  color: var(--dusk-ink);
   overflow: hidden;
+}
+
+.contact .eyebrow {
+  color: var(--accent-soft);
+}
+
+.contact .section-heading h2 {
+  color: var(--dusk-ink);
+}
+
+.contact .section-heading .index {
+  color: rgba(241, 233, 221, 0.4);
 }
 
 .contact::before,
@@ -1747,12 +1846,16 @@ p.journey__lead.dropcap::first-letter {
   align-items: center;
   gap: 16px;
   padding: 16px 20px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--dusk-line);
   border-radius: 14px;
-  background: var(--bg);
+  background: var(--dusk-card);
   text-decoration: none;
-  color: var(--ink);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  color: var(--dusk-ink);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+
+.contact__social:hover {
+  background: var(--dusk-card-alt);
 }
 
 .contact__social--whatsapp:hover {
@@ -1818,29 +1921,29 @@ p.journey__lead.dropcap::first-letter {
   font-family: var(--serif-plain);
   font-weight: 600;
   font-size: 15px;
-  color: var(--ink);
+  color: var(--dusk-ink);
 }
 
 .contact__social-sub {
   font-family: var(--sans);
   font-size: 13px;
-  color: var(--ink-faint);
+  color: rgba(241, 233, 221, 0.5);
 }
 
 .contact__lede {
   font-family: var(--serif);
   font-size: clamp(17px, 1.6vw, 19px);
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: rgba(241, 233, 221, 0.75);
   max-width: 40ch;
 }
 
 .contact__card {
-  background: var(--bg);
-  border: 1px solid var(--line);
+  background: var(--dusk-card);
+  border: 1px solid var(--dusk-line);
   border-radius: 24px;
   padding: clamp(32px, 4vw, 48px);
-  box-shadow: 0 30px 60px -30px rgba(27, 23, 18, 0.18);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.45);
 }
 
 .contact__form {
@@ -1872,32 +1975,37 @@ p.journey__lead.dropcap::first-letter {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: rgba(241, 233, 221, 0.5);
   transition: color 0.2s ease;
 }
 
 .contact__field:focus-within label {
-  color: var(--accent);
+  color: var(--accent-soft);
 }
 
 .contact__field input,
 .contact__field textarea {
   font-family: var(--sans);
   font-size: 16px;
-  color: var(--ink);
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
+  color: var(--dusk-ink);
+  background: var(--dusk);
+  border: 1px solid var(--dusk-line);
   border-radius: 8px;
   padding: 13px 16px;
   resize: vertical;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.contact__field input::placeholder,
+.contact__field textarea::placeholder {
+  color: rgba(241, 233, 221, 0.3);
+}
+
 .contact__field input:focus,
 .contact__field textarea:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(177, 101, 47, 0.15);
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgba(217, 154, 91, 0.2);
 }
 
 .contact__submit {
@@ -1908,22 +2016,22 @@ p.journey__lead.dropcap::first-letter {
   gap: 10px;
   margin-top: 8px;
   padding: 14px 30px;
-  background: var(--ink);
-  border: 1px solid var(--ink);
+  background: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 999px;
   font-family: var(--sans);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--bg);
+  color: var(--dusk-ink);
   cursor: pointer;
   transition: background 0.2s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
 }
 
 .contact__submit:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  box-shadow: 0 10px 24px -12px rgba(177, 101, 47, 0.5);
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+  box-shadow: 0 10px 24px -12px rgba(217, 154, 91, 0.5);
 }
 
 .contact__submit:active {
@@ -1977,7 +2085,7 @@ p.journey__lead.dropcap::first-letter {
 
 .footer {
   position: relative;
-  background: var(--dusk);
+  background: var(--footer-bg);
   color: var(--dusk-ink);
   border-top: 3px solid var(--accent);
   padding: 64px clamp(24px, 5vw, 64px) 0;
@@ -1992,7 +2100,7 @@ p.journey__lead.dropcap::first-letter {
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(177, 101, 47, 0.22), transparent 70%);
+  background: radial-gradient(circle, rgba(217, 154, 91, 0.22), transparent 70%);
   pointer-events: none;
 }
 
