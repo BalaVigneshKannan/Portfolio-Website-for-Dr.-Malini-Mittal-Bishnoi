@@ -708,8 +708,14 @@ section {
 
 .pubs__filters {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   flex-wrap: wrap;
+  padding: 10px 4px;
+}
+
+.pubs__top--filters-only {
+  margin-top: 24px;
+  margin-bottom: 8px;
 }
 
 .pubs__filters button {
@@ -717,25 +723,48 @@ section {
   font-size: 13px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 12px 18px;
+  padding: 12px 20px;
   min-height: 44px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: transparent;
   color: var(--ink-soft);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pubs__filters button:hover {
   border-color: var(--accent);
   color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.pubs__filters button:active {
+  transform: translateY(-1px) scale(0.97);
 }
 
 .pubs__filters button.is-active {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--bg);
+  box-shadow: 0 10px 24px -10px rgba(20, 16, 11, 0.45);
+  transform: translateY(-1px);
+}
+
+.pubs__filters button.is-active:hover {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pubs__filters button {
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .pubs__filters button:hover,
+  .pubs__filters button:active,
+  .pubs__filters button.is-active,
+  .pubs__filters button.is-active:hover {
+    transform: none;
+  }
 }
 
 .pubs__grid {
